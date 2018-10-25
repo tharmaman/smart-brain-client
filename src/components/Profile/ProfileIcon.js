@@ -17,10 +17,21 @@ export default class ProfileIcon extends Component {
         }));
     };
 
-    handleSignout = () => {
-        this.props.onRouteChange('signout');
+    handleSignout = async () => {
+        const { onRouteChange, user } = this.props;
+        console.log(user);
+        const token = window.sessionStorage.getItem('token');
+        let response = await fetch(`http://localhost:3000/logout/${user.id}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token
+            }
+        });
+        console.log(response);
+        onRouteChange('signout');
         window.sessionStorage.clear();
-    }
+    };
 
     render() {
         return (
@@ -45,10 +56,10 @@ export default class ProfileIcon extends Component {
                         }}
                         right
                     >
-                        <DropdownItem onClick={this.props.toggleModal}>View Profile</DropdownItem>
-                        <DropdownItem
-                            onClick={() => this.handleSignout()}
-                        >
+                        <DropdownItem onClick={this.props.toggleModal}>
+                            View Profile
+                        </DropdownItem>
+                        <DropdownItem onClick={() => this.handleSignout()}>
                             Sign Out
                         </DropdownItem>
                     </DropdownMenu>

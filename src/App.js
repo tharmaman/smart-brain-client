@@ -196,6 +196,7 @@ class App extends Component {
                     isSignedIn={isSignedIn}
                     onRouteChange={this.onRouteChange}
                     toggleModal={this.toggleModal}
+                    user={user}
                 />
                 {isProfileOpen && (
                     <Modal>
