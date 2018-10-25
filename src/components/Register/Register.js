@@ -39,15 +39,10 @@ class Register extends React.Component {
             })
         })
             .then(response => {
-                console.log('made it this far');
-                console.log(response);
                 return response.json();
             })
             .then(data => {
-                console.log('made it even further');
-                console.log(data);
                 if (data.user) {
-                    console.log('updating user and changing route');
                     this.saveAuthTokenInSession(data.token);
                     this.props.loadUser(data.user);
                     this.props.onRouteChange('home');

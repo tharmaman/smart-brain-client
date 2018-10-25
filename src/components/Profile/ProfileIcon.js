@@ -17,6 +17,11 @@ export default class ProfileIcon extends Component {
         }));
     };
 
+    handleSignout = () => {
+        this.props.onRouteChange('signout');
+        window.sessionStorage.clear();
+    }
+
     render() {
         return (
             <div className="pa4 tc">
@@ -42,7 +47,7 @@ export default class ProfileIcon extends Component {
                     >
                         <DropdownItem onClick={this.props.toggleModal}>View Profile</DropdownItem>
                         <DropdownItem
-                            onClick={() => this.props.onRouteChange('signout')}
+                            onClick={() => this.handleSignout()}
                         >
                             Sign Out
                         </DropdownItem>
